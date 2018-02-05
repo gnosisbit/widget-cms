@@ -58,26 +58,53 @@ module.exports = function (App) {
   if (config.middleware.enableSessions) {
     let flash = require('express-flash');
     let cookieParser = require('cookie-parser');
+    //
+    let passport = require('passport');
     let session = require('express-session');
-    let RedisStore = require('connect-redis')(session);
+//changed    redis to MySQLStore
+    let MySQLStore = require('express-mysql-session')(session);
+//MySQLStore options
+let mysqlstoewoptions = {
+    host: 'localhost',
+    port: 3306,
+    user:config.dbusername,// 'root',
+    password: config.dbpassword,//'test',
+    database: config.databasename,//'blogpredictionssessions',
+   checkExpirationInterval: 900000,// How frequently expired sessions will be cleared; milliseconds.
+    expiration: 86400000,// The maximum age of a valid session; milliseconds.
+    createDatabaseTable: true,// Whether or not to create the sessions database table, if one does not already exist.
+    connectionLimit: 1,// Number of connections when creating a connection pool
+    schema: {
+        tableName: 'sessions',
+        columnNames: {
+            session_id: 'session_id',
+            expires: 'expires',
+            data: 'data'
+        }
+    }
 
+};
+let sessionStore = new MySQLStore(mysqlstoewoptions);
 
     // parse cookies
     server.use(cookieParser());
 
     // session management
-    server.use(session({
-      secret: config.secret,
-      store: new RedisStore(config.redis),
-      proxy: true,
-      resave: true,
-      saveUninitialized: true
-    }));
+      server.use(session({
+          key: 'app.sess',
+          secret: config.secret,
+          store: sessionStore,
+          resave: true,
+          saveUninitialized:true
+      }));
 
     // login management
     server.use(App.passport.initialize());
     server.use(App.passport.session());
     server.use(flash());
+
+    // want passport to be accessible throughout the application
+    /*commentout*/server.set('passport', passport);
   }
 
   // application caching
