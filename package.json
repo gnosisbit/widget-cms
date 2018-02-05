@@ -49,7 +49,8 @@
     "pg": "^7.3.0",
     "sqlite3": "^3.1.13",
     "type-is": "^1.6.13",
-    "unidecode": "^0.1.8"
+    "unidecode": "^0.1.8",
+    "widget-loader": "^1.0.1"
   },
   "devDependencies": {
     "bcrypt-nodejs": "0.0.3",

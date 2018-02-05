@@ -15,8 +15,7 @@ module.exports = function (App) {
   const applicationHelpers = App._helpers;
   const frameworkHelpers = require('./lib/helpers');
   const handlebarsHelpers = require('handlebars-helpers');
-
-
+//const hbsHelpers = require('./lib/helpers');
   /**
    * Create Express server.
    */
@@ -64,7 +63,7 @@ module.exports = function (App) {
 //changed    redis to MySQLStore
     let MySQLStore = require('express-mysql-session')(session);
 //MySQLStore options
-let mysqlstoewoptions = {
+let mysqlstoreoptions = {
     host: 'localhost',
     port: 3306,
     user:config.dbusername,// 'root',
@@ -84,7 +83,7 @@ let mysqlstoewoptions = {
     }
 
 };
-let sessionStore = new MySQLStore(mysqlstoewoptions);
+let sessionStore = new MySQLStore(mysqlstoreoptions);
 
     // parse cookies
     server.use(cookieParser());
@@ -156,7 +155,30 @@ let sessionStore = new MySQLStore(mysqlstoewoptions);
   }
 
   server.use(morgan('combined'));
-
+/*
+   if (config.saveLogs) {		
+		
+    let FileStreamRotator = require('file-stream-rotator')		
+    let logDirectory = path.join(config.rootDir, 'log');		
+		
+    // ensure log directory exists		
+    fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);		
+		
+   // create a rotating write stream		
+    let accessLogStream = FileStreamRotator.getStream({		
+      date_format: 'YYYYMMDD',		
+      filename: path.join(logDirectory, 'access-%DATE%.log'),		
+      frequency: 'daily',		
+      verbose: false		
+    });		
+		
+    // setup the logger		
+    server.use(morgan('combined', {stream: accessLogStream}));		
+  }		
+ else {		
+    server.use(morgan('dev'));		
+  }
+*/
   // error handling
   if (server.get('env') === 'development') {
     // only use in development

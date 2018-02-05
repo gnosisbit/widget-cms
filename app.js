@@ -94,7 +94,12 @@ _.assign(App.prototype, {
 
     this._plugins = bootstrap.loadPlugins(this._config);
     bootstrap.loadControllers(this._config);
-
+    let widgetMiddleware = bootstrap.initWidgets(this);
+	 
+    // add widget middleware		
+    if (widgetMiddleware) {		
+      this.server.use(widgetMiddleware);		
+    }	
     if (!this._config.hasOwnProperty('serverless') || !this._config.serverless) {
 
       bootstrap.loadRoutes(this._config);
@@ -136,6 +141,16 @@ _.assign(App.prototype, {
   **/
   addCollection: function () {
     return this.Bookshelf.collection.apply(this.Bookshelf, _.toArray(arguments));
+  },
+
+
+  /*
+   * Public: passport authantication
+   *
+   * @returns - (Object) - returns passport object
+  **/
+  passport: function () {
+    return this.server.get('passport');
   },
 
 
@@ -295,7 +310,7 @@ _.assign(App.prototype, {
   **/
   get: function () {
     let args = _.toArray(arguments);
-
+//TODO: Remember to uncomment
     /* disable cache
     if (this._config.cache) {
 

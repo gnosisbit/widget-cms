@@ -3,7 +3,6 @@
 
 [![Build Status](https://travis-ci.org/NodeZA/widget-cms.svg?branch=master)](https://travis-ci.org/NodeZA/widget-cms)
 ![Depencies](https://david-dm.org/nodeza/widget-cms.svg)
-![NPM](https://img.shields.io/npm/v/widget-cms.svg)
 
 ### What is Widget-CMS?
 
@@ -20,7 +19,6 @@ Table of Contents
 - [Collections](#collections)
 - [Controllers](#controllers)
 - [API](#api)
-- [Change log](#change-log)
 - [Testing](#testing)
 
 ### How it works
@@ -42,7 +40,7 @@ When a `Widget-CMS` application is initialised it runs the following steps:
 ### Software Requirements
 
  - SQL database (MySQL, Postgres, MariaDB, or SQLite)
- - Redis - session management
+ - Mysql - session
  - Node.js 14.x or greater
 
 
@@ -75,8 +73,6 @@ app.config({
       charset: 'utf8'
     }
   },
-
-  redis: {}, // optional - assumes {host: localhost, port: 6379}
 
   rootDir: process.cwd(), // required
 
@@ -326,7 +322,7 @@ npm test
 
 (MIT License)
 
-Copyright (C) 2016 Qawelesizwe Mlilo <qawemlilo@gmail.com>
+Copyright (C) 2018 Gnosis bit<some@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
