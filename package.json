@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/NodeZA/widget-cms.git"
+    "url": "git+ssh://git@github.com/gnosisbit/widget-cms.git"
   },
   "keywords": [
     "cms",
@@ -17,12 +17,12 @@
     "bookshelf",
     "express"
   ],
-  "author": "Qawelesizwe Mlilo",
+  "author": "Gnosis Bit",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/NodeZA/widget-cms/issues"
+    "url": "https://github.com/gnosisbit/widget-cms/issues"
   },
-  "homepage": "https://github.com/NodeZA/widget-cms#readme",
+  "homepage": "https://github.com/gnosisbit/widget-cms#readme",
   "dependencies": {
     "body-parser": "^1.15.1",
     "bookshelf": "^0.10.2",
@@ -31,7 +31,7 @@
     "errorhandler": "^1.4.3",
     "express": "^4.13.4",
     "express-flash": "0.0.2",
-    "express-redis-cache": "^1.0.0",
+    "express-mysql-session": "^1.2.3",
     "express-session": "^1.13.0",
     "express-validator": "https://registry.npmjs.org/express-validator/-/express-validator-3.2.1.tgz",
     "handlebars-helpers": "^0.9.8",
@@ -45,6 +45,7 @@
     "multer": "^1.1.0",
     "mysql": "^2.11.1",
     "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "pg": "^7.3.0",
     "sqlite3": "^3.1.13",
     "type-is": "^1.6.13",
